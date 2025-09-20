@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogGeneratorForm from '../components/BlogGeneratorForm.astro';
+---
+
+<BaseLayout title="Generate Blog Post - SEO Manager">
+  <main class="container mx-auto px-4 py-8">
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">SEO Blog Post Generator</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Generate high-quality, SEO-optimized blog posts using our AI-powered system.
+        Our tool analyzes competitors, trending topics, and creates engaging content tailored to your needs.
+      </p>
+    </div>
+
+    <BlogGeneratorForm />
+
+    <div class="mt-12 max-w-4xl mx-auto">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">How it works</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center p-6 bg-gray-50 rounded-lg">
+          <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-blue-600 font-bold text-xl">1</span>
+          </div>
+          <h3 class="font-semibold text-gray-800 mb-2">Enter Your Topic</h3>
+          <p class="text-gray-600 text-sm">Provide your blog topic and target SEO keyword to get started.</p>
+        </div>
+
+        <div class="text-center p-6 bg-gray-50 rounded-lg">
+          <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-blue-600 font-bold text-xl">2</span>
+          </div>
+          <h3 class="font-semibold text-gray-800 mb-2">AI Analysis</h3>
+          <p class="text-gray-600 text-sm">Our AI analyzes competitors, trending topics, and creates an optimized outline.</p>
+        </div>
+
+        <div class="text-center p-6 bg-gray-50 rounded-lg">
+          <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-blue-600 font-bold text-xl">3</span>
+          </div>
+          <h3 class="font-semibold text-gray-800 mb-2">Get Your Post</h3>
+          <p class="text-gray-600 text-sm">Receive a complete, SEO-optimized blog post ready for publication.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <div class="max-w-2xl mx-auto p-6 bg-blue-50 rounded-lg">
+        <h3 class="text-lg font-semibold text-blue-900 mb-2">Generation Options</h3>
+        <div class="text-sm text-blue-700 space-y-2">
+          <p><strong>Async Generation:</strong> Start the process and monitor progress. Best for production use.</p>
+          <p><strong>Sync Generation:</strong> Wait for completion in one request. Faster for testing but may timeout.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

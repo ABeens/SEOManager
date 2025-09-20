@@ -1,0 +1,92 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "A blog built with Astro" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{title}</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #f9f9f9;
+      }
+
+      h1, h2, h3 {
+        color: #2c3e50;
+      }
+
+      a {
+        color: #3498db;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .header {
+        border-bottom: 2px solid #3498db;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+      }
+
+      .nav {
+        margin-top: 1rem;
+      }
+
+      .nav a {
+        margin-right: 1rem;
+        font-weight: 500;
+      }
+
+      .content {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid #ddd;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <h1><a href="/">My Blog</a></h1>
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/blog">Blog</a>
+        <a href="/generate">Generate Post</a>
+      </nav>
+    </header>
+
+    <main class="content">
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <p>Built with Astro</p>
+    </footer>
+  </body>
+</html>

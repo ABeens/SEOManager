@@ -1,0 +1,115 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const recentPosts = await getCollection('blog');
+const sortedPosts = recentPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout title="Welcome to My Blog" description="A blog built with Astro and Markdown">
+  <h1>Welcome to My Blog</h1>
+
+  <p>This is a blog built with Astro that reads and displays Markdown files. Explore the latest posts below or visit the <a href="/blog">blog page</a> to see all posts.</p>
+
+  {sortedPosts.length > 0 && (
+    <section>
+      <h2>Recent Posts</h2>
+      <div class="recent-posts">
+        {sortedPosts.map((post) => (
+          <article class="post-card">
+            <h3>
+              <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+            </h3>
+
+            {post.data.description && (
+              <p class="description">{post.data.description}</p>
+            )}
+
+            <div class="meta">
+              <time>{post.data.pubDate.toLocaleDateString()}</time>
+              {post.data.author && <span> • by {post.data.author}</span>}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="cta">
+        <a href="/blog" class="view-all">View All Posts →</a>
+      </div>
+    </section>
+  )}
+
+  {sortedPosts.length === 0 && (
+    <section>
+      <h2>No Posts Yet</h2>
+      <p>Check back soon for new content!</p>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .recent-posts {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .post-card {
+    padding: 1.5rem;
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+    background: #f8f9fa;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .post-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.3rem;
+  }
+
+  .post-card h3 a {
+    color: #2c3e50;
+    text-decoration: none;
+  }
+
+  .post-card h3 a:hover {
+    color: #3498db;
+  }
+
+  .description {
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .meta {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .cta {
+    text-align: center;
+  }
+
+  .view-all {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+
+  .view-all:hover {
+    background: #2980b9;
+  }
+</style>
