@@ -1,5 +1,6 @@
 import json
 import logging
+import os
 import subprocess
 from pathlib import Path
 from typing import Dict, Any
@@ -214,8 +215,15 @@ class ManagerAgent:
 
     def _build_astro_project(self) -> None:
         """Build the Astro project after adding new content"""
+        # Check if we're in development mode
+        environment = os.getenv('ENVIRONMENT', 'development')
+
+        if environment == 'development':
+            logger.info("Development mode: Skipping build - Astro dev server will auto-reload")
+            return
+
         try:
-            logger.info("Building Astro project...")
+            logger.info("Production mode: Building Astro project...")
 
             # Change to Astro project directory and run build
             result = subprocess.run(
