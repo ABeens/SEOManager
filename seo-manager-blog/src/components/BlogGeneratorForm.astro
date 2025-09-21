@@ -81,10 +81,10 @@
           <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
           </svg>
-          Generate Blog Post (Async)
+          Generate Blog Post (It takes a few minutes)
         </button>
 
-        <button
+        <!-- <button
           type="button"
           id="generate-sync-btn"
           class="btn btn-secondary btn-lg flex items-center justify-center gap-2"
@@ -93,7 +93,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
           </svg>
           Generate (Sync)
-        </button>
+        </button> -->
       </div>
     </form>
 
@@ -187,7 +187,7 @@
 
   const form = document.getElementById('blog-generator-form') as HTMLFormElement;
   const generateBtn = document.getElementById('generate-btn') as HTMLButtonElement;
-  const generateSyncBtn = document.getElementById('generate-sync-btn') as HTMLButtonElement;
+  // const generateSyncBtn = document.getElementById('generate-sync-btn') as HTMLButtonElement;
   const progressContainer = document.getElementById('progress-container') as HTMLDivElement;
   const progressBar = document.getElementById('progress-bar') as HTMLDivElement;
   const progressText = document.getElementById('progress-text') as HTMLSpanElement;
@@ -231,12 +231,12 @@
 
   function disableButtons() {
     generateBtn.disabled = true;
-    generateSyncBtn.disabled = true;
+    //generateSyncBtn.disabled = true;
   }
 
   function enableButtons() {
     generateBtn.disabled = false;
-    generateSyncBtn.disabled = false;
+    //generateSyncBtn.disabled = false;
   }
 
   // Async generation
@@ -288,43 +288,43 @@
   });
 
   // Sync generation
-  generateSyncBtn.addEventListener('click', async (e) => {
-    e.preventDefault();
-    hideError();
+  // generateSyncBtn.addEventListener('click', async (e) => {
+  //   e.preventDefault();
+  //   hideError();
 
-    const formData = new FormData(form);
-    const request = {
-      topic: formData.get('topic') as string,
-      keyword: formData.get('keyword') as string,
-      tone: formData.get('tone') as string,
-    };
+  //   const formData = new FormData(form);
+  //   const request = {
+  //     topic: formData.get('topic') as string,
+  //     keyword: formData.get('keyword') as string,
+  //     tone: formData.get('tone') as string,
+  //   };
 
-    if (!request.topic.trim() || !request.keyword.trim()) {
-      showError('Please fill in both topic and keyword fields.');
-      return;
-    }
+  //   if (!request.topic.trim() || !request.keyword.trim()) {
+  //     showError('Please fill in both topic and keyword fields.');
+  //     return;
+  //   }
 
-    try {
-      disableButtons();
-      showProgress();
-      updateProgress(50, 'Generating blog post synchronously...');
+  //   try {
+  //     disableButtons();
+  //     showProgress();
+  //     updateProgress(50, 'Generating blog post synchronously...');
 
-      const result = await apiService.generateBlogSync(request);
+  //     const result = await apiService.generateBlogSync(request);
 
-      updateProgress(100, 'Blog post generated successfully!');
-      hideProgress();
-      showSuccess();
+  //     updateProgress(100, 'Blog post generated successfully!');
+  //     hideProgress();
+  //     showSuccess();
 
-      // Store the result for the blog post page
-      sessionStorage.setItem(`blog_post_${result.generation_id}`, JSON.stringify(result));
+  //     // Store the result for the blog post page
+  //     sessionStorage.setItem(`blog_post_${result.generation_id}`, JSON.stringify(result));
 
-      const redirectUrl = result.blog_url || `/blog/${result.topic.toLowerCase().replace(/\s+/g, '-')}`;
+  //     const redirectUrl = result.blog_url || `/blog/${result.topic.toLowerCase().replace(/\s+/g, '-')}`;
 
-    } catch (error) {
-      console.error('Error generating blog post:', error);
-      showError(error instanceof Error ? error.message : 'An error occurred while generating the blog post.');
-      hideProgress();
-      enableButtons();
-    }
-  });
+  //   } catch (error) {
+  //     console.error('Error generating blog post:', error);
+  //     showError(error instanceof Error ? error.message : 'An error occurred while generating the blog post.');
+  //     hideProgress();
+  //     enableButtons();
+  //   }
+  // });
 </script>

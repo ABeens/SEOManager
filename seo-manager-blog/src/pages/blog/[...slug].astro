@@ -13,6 +13,9 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<BlogPost frontmatter={entry.data}>
+<BlogPost frontmatter={{
+  ...entry.data,
+  pubDate: entry.data.pubDate.toISOString()
+}}>
   <Content />
 </BlogPost>

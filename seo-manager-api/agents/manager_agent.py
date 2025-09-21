@@ -134,7 +134,7 @@ class ManagerAgent:
         # Save complete metadata
         metadata = {
             "topic": result["topic"],
-            "keyword": result["keyword"],
+            "{{keyword}}": result["keyword"],
             "tone": result["tone"],
             "outline": result["outline"],
             "competitive_analysis": result["competitive_analysis"],
@@ -160,7 +160,7 @@ class ManagerAgent:
             # Create filename from topic
             topic_slug = result["topic"].lower().replace(" ", "-").replace("'", "").replace(":", "")
             topic_slug = "".join(char for char in topic_slug if char.isalnum() or char == "-")
-            filename = f"{topic_slug}.md"
+            filename = f"{topic_slug}{result['tone']}.md"
 
             # Get current date and time for frontmatter
             current_date = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
