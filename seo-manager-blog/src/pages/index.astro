@@ -28,7 +28,7 @@ const sortedPosts = recentPosts
             )}
 
             <div class="meta">
-              <time>{post.data.pubDate.toLocaleDateString()}</time>
+              <time>{post.data.pubDate.toLocaleDateString()} {post.data.pubDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</time>
               {post.data.author && <span> • by {post.data.author}</span>}
             </div>
           </article>

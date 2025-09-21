@@ -19,7 +19,7 @@ const { frontmatter } = Astro.props;
     <header>
       <h1>{frontmatter.title}</h1>
       <div class="meta">
-        <time>{new Date(frontmatter.pubDate).toLocaleDateString()}</time>
+        <time>{new Date(frontmatter.pubDate).toLocaleDateString()} {new Date(frontmatter.pubDate).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</time>
         {frontmatter.author && <span> • by {frontmatter.author}</span>}
       </div>
       {frontmatter.tags && (

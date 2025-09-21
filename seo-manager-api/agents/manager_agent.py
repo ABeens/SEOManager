@@ -118,8 +118,12 @@ class ManagerAgent:
         self._save_results(result)
 
         # Save to Astro blog directory and build
-        self._save_to_astro_blog(result)
+        blog_slug = self._save_to_astro_blog(result)
         self._build_astro_project()
+
+        # Add blog slug to result for frontend redirect
+        result["blog_slug"] = blog_slug
+        result["blog_url"] = f"/blog/{blog_slug}/"
 
         logger.info("Blog post generated successfully")
         return result
@@ -159,20 +163,20 @@ class ManagerAgent:
             filename = f"{topic_slug}.md"
 
             # Get current date and time for frontmatter
-            current_date = datetime.now().strftime("%Y-%m-%dT%H:%M")
+            current_date = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 
             # Generate relevant tags from topic and keyword
             tags = self._generate_tags(result['topic'], result['keyword'])
 
             # Create Astro frontmatter
             frontmatter = f"""---
-                title: "{result['topic']}"
-                description: "A comprehensive guide about {result['topic']}"
-                pubDate: "{current_date}"
-                author: "SEO Manager"
-                tags: {tags}
-                ---
-                """
+title: "{result['topic']}"
+description: "A comprehensive guide about {result['topic']}"
+pubDate: "{current_date}"
+author: "SEO Manager"
+tags: {tags}
+---
+"""
 
             # Combine frontmatter with content
             astro_content = frontmatter + result["final_post"]

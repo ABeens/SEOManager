@@ -287,3 +287,8 @@ dist/
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+# SEO Manager specific
+seo-manager-api/seo_cache/
+seo-manager-api/logs/
+seo-manager-api/output_hierarchical/
