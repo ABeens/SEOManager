@@ -35,6 +35,8 @@ export interface BlogPostResponse {
   competitive_analysis: CompetitiveAnalysis;
   trending_topics: TrendingTopic[];
   generation_id: string;
+  blog_url?: string;
+  blog_slug?: string;
 }
 
 export interface BlogPostStatus {

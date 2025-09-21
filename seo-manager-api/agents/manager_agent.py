@@ -123,7 +123,7 @@ class ManagerAgent:
 
         # Add blog slug to result for frontend redirect
         result["blog_slug"] = blog_slug
-        result["blog_url"] = f"/blog/{blog_slug}/"
+        result["blog_url"] = f"/blog/{blog_slug}"
 
         logger.info("Blog post generated successfully")
         return result
