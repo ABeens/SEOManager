@@ -1,7 +1,7 @@
 # SEO Manager
 
 ## Architectural Choices and Rationale
-Multi-agent system with specialized roles: Manager orchestrates Research → Planning → Writing → Editing workflow. Semantic caching with ChromaDB reduces API costs by 80%. FastAPI backend + Astro frontend for performance.
+Multi-agent system with specialized roles: Manager orchestrates Research → Planning → Writing → Editing workflow. Semantic caching with ChromaDB reduces API costs. FastAPI backend + Astro frontend for performance.
 
 ## Framework Selection
 - **Backend**: Python + FastAPI + LangChain for LLM orchestration, Google Gemini for cost-effectiveness
