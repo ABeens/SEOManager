@@ -270,15 +270,13 @@
         updateProgress(progress, message);
       });
 
-      updateProgress(100, 'Blog post generated successfully!');
-      hideProgress();
-      showSuccess();
-      
+      //updateProgress(100, 'Blog post generated successfully!');
+      //hideProgress();
+      //showSuccess();
+
       // Store the result for the blog post page
       sessionStorage.setItem(`blog_post_${result.generation_id}`, JSON.stringify(result));
-
-      const redirectUrl = result.blog_url || `/blog/${result.topic.toLowerCase().replace(/\s+/g, '-')}`;
-
+      window.location.href = "/";
     } catch (error) {
       console.error('Error generating blog post:', error);
       showError(error instanceof Error ? error.message : 'An error occurred while generating the blog post.');
@@ -302,7 +300,7 @@
   //   if (!request.topic.trim() || !request.keyword.trim()) {
   //     showError('Please fill in both topic and keyword fields.');
   //     return;
-  //   }
+  //   }no
 
   //   try {
   //     disableButtons();
