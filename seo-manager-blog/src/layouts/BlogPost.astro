@@ -53,26 +53,52 @@ const { frontmatter } = Astro.props;
   .prose {
     line-height: 1.7;
     color: var(--gray-900);
+    max-width: none;
+  }
+
+  .prose h1 {
+    margin-top: 3rem !important;
+    margin-bottom: 2rem;
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--gray-900);
+  }
+
+  .prose h1:first-child {
+    margin-top: 0;
   }
 
   .prose h2 {
-    margin-top: var(--space-8);
-    margin-bottom: var(--space-4);
+    margin-top: 3rem !important;
+    margin-bottom: 1.5rem;
     font-size: var(--font-size-2xl);
     font-weight: 600;
     color: var(--gray-900);
   }
 
   .prose h3 {
-    margin-top: var(--space-6);
-    margin-bottom: var(--space-3);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
     font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--gray-900);
+  }
+
+  .prose h4 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-size: var(--font-size-lg);
     font-weight: 600;
     color: var(--gray-900);
   }
 
   .prose p {
     margin-bottom: var(--space-4);
+    white-space: pre-line;
+  }
+
+  .prose p:last-child {
+    margin-bottom: 0;
   }
 
   .prose pre {
@@ -107,11 +133,67 @@ const { frontmatter } = Astro.props;
   }
 
   .prose ul, .prose ol {
+    margin-top: var(--space-4);
     margin-bottom: var(--space-4);
     padding-left: var(--space-8);
   }
 
   .prose li {
     margin-bottom: var(--space-2);
+  }
+
+  .prose li p {
+    margin-bottom: var(--space-2);
+  }
+
+  .prose strong {
+    font-weight: 600;
+    color: var(--gray-900);
+  }
+
+  .prose em {
+    font-style: italic;
+  }
+
+  .prose a {
+    color: var(--primary-600);
+    text-decoration: underline;
+    text-decoration-color: var(--primary-300);
+  }
+
+  .prose a:hover {
+    color: var(--primary-700);
+    text-decoration-color: var(--primary-600);
+  }
+
+  .prose hr {
+    margin: var(--space-8) 0;
+    border: none;
+    border-top: 1px solid var(--gray-300);
+  }
+
+  .prose img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    margin: var(--space-6) 0;
+  }
+
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-6) 0;
+  }
+
+  .prose th,
+  .prose td {
+    border: 1px solid var(--gray-300);
+    padding: var(--space-3);
+    text-align: left;
+  }
+
+  .prose th {
+    background: var(--gray-100);
+    font-weight: 600;
   }
 </style>

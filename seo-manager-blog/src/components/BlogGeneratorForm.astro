@@ -125,12 +125,6 @@
         </svg>
       </div>
       <h3 class="text-2xl font-bold text-gray-900 mb-2">Post generated successfully!</h3>
-      <p class="text-gray-600 mb-4">You will be redirected to the blog post shortly...</p>
-      <div class="flex items-center justify-center gap-2 text-sm text-gray-500">
-        <div style="width: 0.5rem; height: 0.5rem; background: var(--primary-600); border-radius: var(--radius-full); animation: pulse 2s infinite;"></div>
-        <span>Redirecting in 3 seconds</span>
-      </div>
-    </div>
   </div>
 
   <!-- Error message -->
@@ -245,21 +239,6 @@
     generateSyncBtn.disabled = false;
   }
 
-  function redirectToBlogPost(blogUrl: string) {
-    console.log('Redirecting to:', blogUrl);
-    try {
-      // Try opening in new tab first for debugging
-      window.open(blogUrl, '_blank');
-      // Then redirect current window
-      setTimeout(() => {
-        window.location.href = blogUrl;
-      }, 500);
-    } catch (error) {
-      console.error('Redirect failed:', error);
-      alert(`Redirect failed. Please manually visit: ${blogUrl}`);
-    }
-  }
-
   // Async generation
   generateBtn.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -294,21 +273,11 @@
       updateProgress(100, 'Blog post generated successfully!');
       hideProgress();
       showSuccess();
-
-      // Debug: Log the result to see what we're getting
-      console.log('Blog generation result:', result);
-      console.log('Blog URL from result:', result.blog_url);
-
+      
       // Store the result for the blog post page
       sessionStorage.setItem(`blog_post_${result.generation_id}`, JSON.stringify(result));
 
       const redirectUrl = result.blog_url || `/blog/${result.topic.toLowerCase().replace(/\s+/g, '-')}`;
-      console.log('Will redirect to:', redirectUrl);
-
-      setTimeout(() => {
-        console.log('Attempting redirect...');
-        redirectToBlogPost(redirectUrl);
-      }, 1000);
 
     } catch (error) {
       console.error('Error generating blog post:', error);
@@ -346,20 +315,10 @@
       hideProgress();
       showSuccess();
 
-      // Debug: Log the result to see what we're getting
-      console.log('Blog generation result:', result);
-      console.log('Blog URL from result:', result.blog_url);
-
       // Store the result for the blog post page
       sessionStorage.setItem(`blog_post_${result.generation_id}`, JSON.stringify(result));
 
       const redirectUrl = result.blog_url || `/blog/${result.topic.toLowerCase().replace(/\s+/g, '-')}`;
-      console.log('Will redirect to:', redirectUrl);
-
-      setTimeout(() => {
-        console.log('Attempting redirect...');
-        redirectToBlogPost(redirectUrl);
-      }, 3000);
 
     } catch (error) {
       console.error('Error generating blog post:', error);

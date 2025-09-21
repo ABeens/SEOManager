@@ -170,7 +170,7 @@ class ManagerAgent:
 
             # Create Astro frontmatter
             frontmatter = f"""---
-title: "{result['topic']}"
+title: "{result['topic'].capitalize()}"
 description: "A comprehensive guide about {result['topic']}"
 pubDate: "{current_date}"
 author: "SEO Manager"

@@ -51,8 +51,10 @@ class WriterAgent:
             "- Write complete paragraphs with substance\n"
             "- If listing items, provide SPECIFIC details for each one\n"
             "- Make it engaging and informative\n"
-            "- Use proper markdown formatting\n\n"
-            "Return only the complete markdown content with no placeholders or instructions."
+            "- Use proper markdown formatting\n"
+            "- DO NOT include any image references, ![image], .jpg, .png, or any visual media\n"
+            "- Focus on text-based content only\n\n"
+            "Return only the complete markdown content with no placeholders, instructions, or image references."
         )
         return LLMChain(
             llm=ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.25),
@@ -86,8 +88,10 @@ class EditorAgent:
             "- Remove any instructional text or notes to editors\n"
             "- Make sure every section has substantial, useful content\n"
             "- Improve readability and SEO optimization\n"
+            "- REMOVE ALL image references including ![image], .jpg, .png, .gif, or any visual media mentions\n"
+            "- Keep only text-based content that works without images\n"
             "- Keep only the final, publication-ready content\n\n"
-            "Return only the clean, complete markdown without any placeholders or editorial notes."
+            "Return only the clean, complete markdown without any placeholders, editorial notes, or image references."
         )
         return LLMChain(
             llm=ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.0),
